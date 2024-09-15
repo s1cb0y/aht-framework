@@ -15,9 +15,7 @@ class LogFunction:
 
     def __call__(self, func):
         if not self.logger:
-            logging.basicConfig()
             self.logger = logging.getLogger(func.__module__)
-            self.logger.setLevel(logging.INFO)
 
         @wraps(func)
         def wrapper(*args, **kwargs):
