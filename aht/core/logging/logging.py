@@ -15,10 +15,12 @@ def setup_logging(
     value = os.getenv(env_key, None)
     if value:
         path = value
+        print("using ENV VAR to setup logging")
     if os.path.exists(path):
-        print("using path: " + path)
+        print("using logging config path: " + path)
         with open(path, 'rt') as f:
             config = yaml.safe_load(f.read())
         logging.config.dictConfig(config)
     else:
+        print("using default config")
         logging.basicConfig(level=default_level)
